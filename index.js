@@ -14,39 +14,97 @@ function getComputerChoice(){
 function playRound(playerSelection, computerSelection){
     if (playerSelection.toLowerCase() == 'rock'){
         if (computerSelection.toLowerCase() == 'rock'){
-            return "It's a tie!";
+            return 0;
         } else if (computerSelection.toLowerCase() == 'paper'){
-            return "You lose! Paper beats rock!";
+            return -1;
         } else{
-            return "You win! Rock beats scissor!";
+            return 1;
         }
     } else if (playerSelection.toLowerCase() == 'paper'){
         if (computerSelection.toLowerCase() == 'rock'){
-            return "You win! Paper beats rock!";
+            return 1;
         } else if (computerSelection.toLowerCase() == 'paper'){
-            return "It's a tie!";
+            return 0;
         } else{
-            return "You lose! Scissor beats paper!";
+            return -1;
         }
     } else{
         if (computerSelection.toLowerCase() == 'rock'){
-            return "You lose! Scissor beats rock!";
+            return -1;
         } else if (computerSelection.toLowerCase() == 'paper'){
-            return "You win! Scissor beats paper!";
+            return 1;
         } else{
-            return "It's a tie!";
+            return 0;
         }
     }
 }
 
-function game(){
-    for (let i = 0; i < 5; i++){
-        let playerChoice = prompt("Pick rock, paper, or scissor");
-        while (playerChoice.toLowerCase() !== 'rock' && playerChoice.toLowerCase() !== 'paper' && playerChoice.toLowerCase() !== 'scissors'){
-            playerChoice = prompt("Pick rock, paper, or scissors");
-        }
-        console.log(playRound(playerChoice, getComputerChoice()));
+function check(player_score, computer_score){
+    if (player_score == 5){
+        document.getElementById("Result").innerHTML = "PLAYER WON!";
+        player_score = 0;
+        computer_score = 0;
+    }
+    else if (computer_score == 5){
+        document.getElementById("Result").innerHTML = "COMPUTER WON!";
+        player_score = 0;
+        computer_score = 0;
     }
 }
 
-game();
+const rock = document.getElementById("Rock");
+const paper = document.getElementById("Paper");
+const scissors = document.getElementById("Scissors");
+
+let player_score = 0;
+let computer_score = 0;
+
+rock.addEventListener("click", function() {
+    let result = playRound("Rock", getComputerChoice());
+    if (result == 1){ player_score++; }
+    if (result == -1){ computer_score++;}
+    if (player_score == 5){
+        document.getElementById("Result").innerHTML = "PLAYER WON!";
+        player_score = 0;
+        computer_score = 0;
+    } else if (computer_score == 5){
+        document.getElementById("Result").innerHTML = "COMPUTER WON!";
+        player_score = 0;
+        computer_score = 0;
+    } else{
+        document.getElementById("Result").innerHTML = "PLAYER: " + player_score.toString() + "<br>COMPUTER: " + computer_score.toString();
+    }
+});
+paper.addEventListener("click", function() {
+    let result = playRound("Paper", getComputerChoice());
+    if (result == 1){ player_score++; }
+    if (result == -1){ computer_score++;}
+    if (player_score == 5){
+        document.getElementById("Result").innerHTML = "PLAYER WON!";
+        player_score = 0;
+        computer_score = 0;
+    } else if (computer_score == 5){
+        document.getElementById("Result").innerHTML = "COMPUTER WON!";
+        player_score = 0;
+        computer_score = 0;
+    } else{
+        document.getElementById("Result").innerHTML = "PLAYER: " + player_score.toString() + "<br>COMPUTER: " + computer_score.toString();
+    }});
+
+scissors.addEventListener("click", function() {
+    let result = playRound("Scissors", getComputerChoice());
+    if (result == 1){ player_score++; }
+    if (result == -1){ computer_score++;}
+    if (player_score == 5){
+        document.getElementById("Result").innerHTML = "PLAYER WON!";
+        player_score = 0;
+        computer_score = 0;
+    } else if (computer_score == 5){
+        document.getElementById("Result").innerHTML = "COMPUTER WON!";
+        player_score = 0;
+        computer_score = 0;
+    } else{
+        document.getElementById("Result").innerHTML = "PLAYER: " + player_score.toString() + "<br>COMPUTER: " + computer_score.toString();
+    }});
+
+
